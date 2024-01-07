@@ -18,7 +18,7 @@ search.addEventListener("input", function () {
 
     // це запит до власного апі який поверне відділення
     const Http = new XMLHttpRequest();
-    let url = "http://127.0.0.1:8000/search/"+criterial+"/";
+    let url = "/search/"+criterial+"/";
     Http.open("GET", url)
     Http.send()
     Http.onreadystatechange=(e)=> {
