@@ -78,11 +78,11 @@ class Main(View):
             print(category_obj)
         if page == 0:
             start = 0
-            stop = 15
+            stop = 14
 
         else:
             stop = (16*page)-1
-            start = stop-16
+            start = stop-15
 
         return start, stop, page_count
 
