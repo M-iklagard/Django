@@ -83,6 +83,8 @@ class Main(View):
         else:
             stop = (16*page)-1
             start = stop-16
+            if start<0:
+                start=0
 
         return start, stop, page_count
 
