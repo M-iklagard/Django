@@ -1,0 +1,67 @@
+.mainmenubtn {
+    border: none;
+    cursor: pointer;
+    border-color: none;
+    border-color: transparent;
+
+}
+.dropdown {
+    float: right;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    text-align: center;
+    height: 60%;
+}
+.mainmenubtn {
+    border: none;
+    cursor: pointer;
+    border-color: none;
+    border-color: transparent;
+}
+
+.dropdown-child {
+    display: none;
+    border-radius: 20px;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s, max-height 0.5s;
+}
+
+.dropdown-child a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 20px;
+    width: 100px;
+    padding: 5px;
+    align-items: center;
+    text-align: center;
+    display: block;
+    transition: background 0.5s;
+}
+
+.dropdown:hover .dropdown-child {
+    display: flex;
+    flex-direction: row-reverse;
+    opacity: 1;
+    max-height: 200px; /* Встановіть бажану висоту */
+}
+
+.cat-icon{
+    height:100%;
+    transition: all 0.2s ease-in-out;
+}
+
+.cat-icon:hover{
+    transform: scale(1.2);
+    transform: rotate(360deg);
+}
+
+.cat-linc:hover{
+    transform: scale(0.9);
+
+    color: #006b1b;
+}

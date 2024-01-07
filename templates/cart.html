@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/cart.css'%}">
+    <script src="{% get_static_prefix %}script/cart_amount_button.js" defer></script>
+    <script src="{% get_static_prefix %}script/post.js" defer></script>
+    <script src="{% get_static_prefix %}script/cart-button.js" defer></script>
+</head>
+<body>
+
+    <div class="order">
+    <h1>1.Товари в кошику</h1>
+    {% for product in cart %}
+        <div class="product-block">
+            <p  id="product-name">{{ product.2 }} - </p>
+            <button class="button decreaseBtn">-</button>
+            <div class="amount" id="product-amount">{{ product.3 }} шт</div>
+            <button class="button increaseBtn">+</button>
+            <div class="price" id="product-price"> {{ product.4 }} грн, за одиницю товару</div>
+        </div>
+    {% endfor %}
+    <div id="totalPrice"></div>
+    </div>
+    
+    <div class="delivery">
+        <h1>2. Адреса доставки</h1>
+        <form method="post" enctype="multipart/form-data" id="delivery-form">
+            {% csrf_token %}
+            {{ order_form.as_p }}
+
+        </form>
+    </div>
+    
+    <div class="bio">
+        <h1>2. Особисті дані</h1>
+        <form method="post" enctype="multipart/form-data" id="bio-form">
+            {% csrf_token %}
+            {{ bio_form.as_p }}
+        </form>
+    </div>
+    <button class="send-order-button" onclick="submitForm()">Замовити</button>
+</body>
+</html>
+

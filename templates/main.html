@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+     
+    <div class="product-grid">
+        {% for product in products %}
+
+            <a href="/product/{{ product.id }}/" class="product-container" id="product-container">
+                <p class="label">{{ product.name }}</p>
+                <img src="{% get_media_prefix %}{{product.image.all.0}}" alt="img" class="photo">
+
+
+                <form id="myForm" action="{% url "add_to_cart" %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.id }}"/>
+                    <input type="hidden" name="redirect_to" value="/main/{{ current_category }}/{{ current_page }}">
+
+                    <button type="submit" onclick="alert('Додано')" class="button">
+                        <div class="price">
+                            <p>{{ product.price }} грн.</p>
+                            <img src="{% get_media_prefix %}add-to-cart.png" class="cart"></img>
+                        </div>
+                    </button>
+                </form>
+            </a>
+        {% endfor %}
+    
+    </div>
+    <div class="pagination">
+        {% for i in pages_count %}
+            <a href="http://127.0.0.1:8000/main/{{ current_category }}/{{ i }}">{{ i }}</a>
+        {% endfor %}
+    </div>
+
+{% endblock %}

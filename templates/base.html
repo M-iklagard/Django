@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/top_bar.css'%}">
+    <link rel="stylesheet" href="{% static 'css/product_container.css'%}">
+    <link rel="stylesheet" href="{% static 'css/drop_down_menu.css'%}">
+    <link rel="stylesheet" href="{% static 'css/search_result.css' %}">
+    <script src="{% get_static_prefix %}script/search.js" defer></script>
+    <script src="{% get_static_prefix %}script/test.js" defer></script>
+
+</head>
+
+<body style="background-color: #918e8e" id="body">
+
+    <div class="top-bar">
+        <a href="/main/all/1">
+            <img src="{% get_media_prefix %}logo.png" class="logo">
+        </a>
+    
+        <div class="search-container" id="search-container">
+            <input placeholder="пошук🔍" class="search" id="searchbar">
+            <ul class="search-menu" id="search-menu">
+            </ul>
+        </div>
+
+        <a href="{% url 'cart' %}"><img src="{% get_media_prefix %}cart.png" class="icon"></a>
+
+        {% if user.is_authenticated  %}
+            <a href="{% url 'logout' %}"><img src="{% get_media_prefix %}auth.png" class="icon"></a>
+        {% else %}
+            <a href="{% url 'auth' %}"><img src="{% get_media_prefix %}un_auth.png" class="icon"></a>
+        {% endif %}
+
+
+        <div class="dropdown">
+            <img src="{% get_media_prefix %}catalog.png" class="cat-icon">
+            <div class="dropdown-child">
+                {% for category in categories %}
+                    <a href="/main/{{ category }}/1" class="cat-linc">{{ category }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+}
+.body{
+    text-align: center;
+}
+/*загальний контейнер для всіх елементів*/
+.container{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+}
+
+/*контейнер для каруселі*/
+.itcss{
+    max-width: 630px;
+    margin: 30px;
+}
+
+/*контейнер для тексту, відео*/
+.info-block{
+    max-width: 80%;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon{
+    width: 50px;
+    height: 50px;
+}
+
+.button{
+    width: 100%;
+    background-color: rgba(227, 95, 72, 0.86);
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 5px 15px rgb(0, 0, 0);
+    border: none;
+    display: flex;
+
+}
+
+.button:hover{
+    transform: scale(0.9);
+    background-color: #22bb4f;
+    box-shadow: 0 5px 15px rgba(227, 95, 72, 0.86);
+    color: #0c2fbd;
+
+}
+
+.discription{
+    text-align: left;
+}
+
+.price{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-left: 45%;
+}

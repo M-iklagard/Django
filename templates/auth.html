@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autorization</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/enter_forms.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+</head>
+<body class="body">
+    <form method="post" enctype="multipart/form-data" class="form">
+        <div class="label-block">
+            <img src="{% get_media_prefix %}enter.png" class="icon">
+            <h1>Вхід</h1>
+        </div>
+        {% csrf_token %}
+        {{ form }}
+        <a href="{% url 'reg' %}" class="link">У вас немає аккаунту?</a>
+        <button class="button">Увійти</button>
+    </form>
+</body>
+</html>

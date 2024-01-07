@@ -1,0 +1,76 @@
+*{
+    font-family: 'Pangolin', cursive;
+    font-size: 20px;
+}
+
+.product-grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+
+.product-container{
+    background-color: white;
+    width: 19%;
+    height: 35%;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    text-align: center;
+    padding: 0;
+    text-decoration: none;
+
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 5px 15px rgb(0, 0, 0);
+
+}
+.product-container:hover{
+    transform: scale(0.95);
+}
+.photo{
+    display: flex;
+    width: auto;
+    margin-right: auto;
+    margin-left: auto;
+    height: 150px;
+
+}
+
+.label{
+    font-size: 20px;
+}
+
+.button{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    background-color: white;
+    border-radius: 20px;
+    height: 100px;
+    border-color: #006b1b  ;
+}
+.button:hover{
+    background:  linear-gradient(40deg, #ffffff, rgba(58, 206, 110, 0.86));
+}
+
+
+.cart{
+    width: 20%;
+    height: 20%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.price{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+}
+
+
+.pagination{
+    margin-left: 45%;
+}

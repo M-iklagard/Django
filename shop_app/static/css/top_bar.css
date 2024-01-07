@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 0;
+}
+
+.top-bar{
+    background:  linear-gradient(40deg, #ffffff, rgba(227, 95, 72, 0.86));
+    width: 95vw;
+    height:70px;
+    box-shadow: 0 5px 15px #030303;
+    border-radius: 20px;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -0%);
+    position: fixed;
+    z-index: 999;
+}
+
+.logo{
+    height: 75%;
+    top: 50%;
+    float: left;
+}
+
+.icon{
+    height: 60%;
+    float: right;
+    top: 50%;
+    margin-right: 2%;
+    transition: all 0.2s ease-in-out;
+}
+
+.icon:hover{
+    transform: scale(1.2);
+}
+
