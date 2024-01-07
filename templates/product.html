@@ -60,7 +60,7 @@
 <form id="myForm" action="{% url "add_to_cart" %}" method="post" class="form">
     {% csrf_token %}
     <input type="hidden" name="product_id" value="{{ product.id }}"/>
-    <input type="hidden" name="redirect_to" value="product/{{ product.id }}"/>
+    <input type="hidden" name="redirect_to" value="/product/{{ product.id }}"/>
 
 
     <button type="submit" onclick="alert('Додано')" class="button">

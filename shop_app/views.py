@@ -152,7 +152,7 @@ class AddToCartBtn(View):
     def post(self, request):
         new_product_id = request.POST["product_id"]
         redirect_to = request.POST["redirect_to"]
-
+        print(redirect_to)
         # додвання товару в авторизовану корзину
         if request.user.is_authenticated:
 
