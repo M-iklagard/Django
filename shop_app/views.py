@@ -232,3 +232,9 @@ class SearchView(View):
             data.append([product.id, product.name])
 
         return JsonResponse(data, safe=False)
+
+class RedirectMain(View):
+    """Це клас для редіректу з базової адреси до першї сторінки
+    каталогу товарів"""
+    def get(self, request):
+        return redirect("main", category="all", page=1)
