@@ -1,78 +1,60 @@
-<!doctype html>
-<html lang="ru">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
+{% block head %}
     <meta charset="utf-8">
     <title>Product</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/slider.css' %}">
+    <script src="{% get_static_prefix %}script/carusel.js" defer></script>
     <link rel="stylesheet" href="{% static 'css/product.css' %}">
-    <script defer src="{% get_static_prefix %}script/slider.js"></script>
+    <link rel="stylesheet" href="{% static 'css/carusel.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
-</head>
+    <link rel="shortcut icon" href="{% get_media_prefix  %}box.png" type="image/x-icon">
 
-<body class="body">
+{% endblock %}
+{% block bg_color %}
+    
+{% endblock %}
+
+
+{% block content %}
 
     <div class="container">
-
-    {#це карусель#}
-        <div class="itcss">
-            <div class="itcss__wrapper">
-                <div class="itcss__items">
-                    {% for img in product.image.all %}
-                        <div class="itcss__item">
-                            <div style="height: auto">
-                                <img src="{% get_media_prefix %}{{ img }}">
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <a class="itcss__control itcss__control_prev" href="#" role="button" data-slide="prev"></a>
-            <a class="itcss__control itcss__control_next" href="#" role="button" data-slide="next"></a>
-        </div>
-
-        <div class="info-block">
-
         {#це опис#}
-            <div class="discription">
-                <h1>Характеристики:</h1>
-                {% for letter in product.discription %}
-                    {% if letter == "/" %}
-                         <br>
-                        {% else %}
-                            <span>{{ letter }}</span>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        
+        <div class="discription">
+            <p class="discription-text">{{ product.discription }}</p>
             {#це відео#}
-            <div>
+            <div class="video">
                 <iframe width="560" height="315" src="{{ product.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
-
+        </div>
+        
+        {#це карусель#}
+        <div class="slideshow-container">
+            <!-- Full-width images with number and caption text -->
+            {% for img in product.image.all %}
+                <div class="mySlides fade">
+                    <img src="{% get_media_prefix %}{{ img }}" style="width:100%">
+                </div>
+            {% endfor %}
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
     </div>
     
-{# це кнопка купівлі #}
-<form id="myForm" action="{% url "add_to_cart" %}" method="post" class="form">
-    {% csrf_token %}
-    <input type="hidden" name="product_id" value="{{ product.id }}"/>
-    <input type="hidden" name="redirect_to" value="/product/{{ product.id }}"/>
-
-
-    <button type="submit" onclick="alert('Додано')" class="button">
-        <div class="price">
-            <p>{{ product.price }} грн.</p>
-            <img src="{% get_media_prefix %}add-to-cart.png" class="icon"></img>
-        </div>
-    </button>
-</form>
-<script>
+    {# це кнопка купівлі #}
+    <form id="myForm" action="{% url "add_to_cart" %}" method="post" class="form">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" value="{{ product.id }}"/>
+        <input type="hidden" name="redirect_to" value="/product/{{ product.id }}"/>
+        
+        <button type="submit" onclick="alert('Додано')" class="cart-button">
+                <p>{{ product.price }} грн.</p>
+                <img src="{% get_media_prefix %}add-to-cart.png" class="cart-icon"></img>
+        </button>
+    </form>
     
-</script>
 
-</body>
-</html>
+{% endblock %}

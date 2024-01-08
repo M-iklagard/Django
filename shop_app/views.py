@@ -218,8 +218,9 @@ class ProductView(View):
     def get(self, request, product_id):
 
         product = Product.objects.get(id=product_id)
-
-        return render(request,context={"product": product}, template_name="product.html")
+        # всі категорії для дроп меню
+        categories = Category.objects.all()
+        return render(request,context={"product": product, "categories":categories}, template_name="product.html")
 
 class SearchView(View):
     """Вью для форми пошуку,
