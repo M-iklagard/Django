@@ -5,7 +5,7 @@
 }
 
 .top-bar{
-    background:  linear-gradient(40deg, #ffffff, rgba(227, 95, 72, 0.86));
+    background:  linear-gradient(40deg, #ffffff, rgba(62, 21, 101, 0.86));
     width: 95vw;
     height:70px;
     box-shadow: 0 5px 15px #030303;
@@ -35,3 +35,6 @@
     transform: scale(1.2);
 }
 
+.body{
+    background-color: #444141;
+}
