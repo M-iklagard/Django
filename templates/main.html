@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head %}
+    <title>Miklagard-shop</title>
+    <link rel="shortcut icon" href="{% get_media_prefix  %}headlogo.png" type="image/x-icon">
+{% endblock %}
+
 {% block content %}
      
     <div class="product-grid">

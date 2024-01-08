@@ -3,12 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/top_bar.css'%}">
     <link rel="stylesheet" href="{% static 'css/product_container.css'%}">
     <link rel="stylesheet" href="{% static 'css/drop_down_menu.css'%}">
     <link rel="stylesheet" href="{% static 'css/search_result.css' %}">
+
+    {% block head %}
+        <link rel="shortcut icon" href="{% get_media_prefix  %}headlogo.png" type="image/x-icon">
+        <title>Title</title>
+    {% endblock %}
+
     <script src="{% get_static_prefix %}script/search.js" defer></script>
 
 </head>
