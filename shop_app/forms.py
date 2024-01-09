@@ -100,11 +100,11 @@ def get_wh(ref):
 class OrderForm(Form):
     cities = get_cities()
     warehouses = []
-    city = forms.ChoiceField(choices=cities,  widget=forms.Select(attrs={"id": "city","required":True}), label="Місто")
-    warehouse = forms.ChoiceField(choices=warehouses, widget=forms.Select(attrs={"id": "warehouse", "required":True}), label="Відділення")
+    city = forms.ChoiceField(choices=cities,  widget=forms.Select(attrs={"id": "city","required":True, "class":"city"}), label="Місто")
+    warehouse = forms.ChoiceField(choices=warehouses, widget=forms.Select(attrs={"id": "warehouse", "required":True,"class":"warehouse"}), label="Відділення")
 
 
 class BioForm(Form):
-    ful_name = forms.CharField(label="Ім'я отримувача", required=True)
-    surname = forms.CharField(label="Прізвище отримувача", required=True)
-    patronymic = forms.CharField(label="Побатькові отримувача", required=True)
+    ful_name = forms.CharField(label="Ім'я отримувача", required=True, widget=forms.TextInput(attrs={'id': 'full_name', "class":"full_name"}))
+    surname = forms.CharField(label="Прізвище отримувача", required=True, widget=forms.TextInput(attrs={'id': 'surname', "class":"surname"}))
+    patronymic = forms.CharField(label="Побатькові отримувача", required=True, widget=forms.TextInput(attrs={'id': 'patronymic', "class":"patronymic"}))

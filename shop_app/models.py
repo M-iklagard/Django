@@ -53,7 +53,8 @@ class Cart(models.Model):
         for product in products:
             for item in items:
                 if product.id == item.product_id:
-                    data_set.append([item.id, item.cart_id, product.name, item.amount, product.price])
+                    data_set.append([item.id, item.cart_id, product.name, item.amount, product.price, product.image.all()[1]])
+        print(data_set)
         return data_set
 
 class CartItem(models.Model):
@@ -65,3 +66,16 @@ class CartItem(models.Model):
     class Meta:
         verbose_name = "Об'єкт корзини"
         verbose_name_plural = "Об'єкти корзини"
+
+
+class Order(models.Model):
+    """Це модель вже оформленного замовлення"""
+
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Замовник")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Продукт")
+    amount = models.IntegerField(verbose_name="Кількість")
+    delivery_status = models.BooleanField(verbose_name="Статус замовлення")
+
+    class Meta:
+        verbose_name = "Замовлення"
+        verbose_name_plural = "Замовлення"

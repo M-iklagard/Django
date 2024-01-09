@@ -12,5 +12,6 @@ urlpatterns = [
     path("api/<str:city_ref>/", api, name="api"),
     path("product/<int:product_id>/", ProductView.as_view(), name="product_page"),
     path("search/<str:criterial>/", SearchView.as_view(), name="search"),
-    path("", RedirectMain.as_view(), name="main-redir" )
+    path("", RedirectMain.as_view(), name="main-redir" ),
+    path("order/", order, name="order")
 ]

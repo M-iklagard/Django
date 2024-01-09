@@ -11,6 +11,7 @@ from .serializers import WarehouseSerializer
 from .forms import get_wh, get_cities
 from django.http import JsonResponse
 import math
+from django.views.decorators.csrf import csrf_exempt
 
 class RegView(View):
     """Відображення форми реєстрації"""
@@ -239,3 +240,9 @@ class RedirectMain(View):
     каталогу товарів"""
     def get(self, request):
         return redirect("main", category="all", page=1)
+
+@csrf_exempt
+def order(request):
+    if request.method == "POST":
+        data = [3]
+        return JsonResponse(data, safe=False)

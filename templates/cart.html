@@ -11,17 +11,18 @@
     <script src="{% get_static_prefix %}script/cart-button.js" defer></script>
     <link rel="shortcut icon" href="{% get_media_prefix  %}headcart.png" type="image/x-icon">
 </head>
-<body>
+<body class="body">
 
     <div class="order">
     <h1>1.Товари в кошику</h1>
     {% for product in cart %}
         <div class="product-block">
-            <p  id="product-name">{{ product.2 }} - </p>
+            <p  id="product-name" name="product-name">{{ product.2 }} - </p>
+            {#<img src="{% get_media_prefix %}{{product.5}}" class="prod-img">#}
             <button class="button decreaseBtn">-</button>
-            <div class="amount" id="product-amount">{{ product.3 }} шт</div>
+            <div class="amount" id="product-amount" name="product-amount">{{ product.3 }} шт</div>
             <button class="button increaseBtn">+</button>
-            <div class="price" id="product-price"> {{ product.4 }} грн, за одиницю товару</div>
+            <div class="price" id="product-price" name="product-price"> {{ product.4 }} грн, за одиницю товару</div>
         </div>
     {% endfor %}
     <div id="totalPrice"></div>
@@ -38,7 +39,7 @@
     
     <div class="bio">
         <h1>2. Особисті дані</h1>
-        <form method="post" enctype="multipart/form-data" id="bio-form">
+        <form method="post" enctype="multipart/form-data" id="bio-form" name="bio-form">
             {% csrf_token %}
             {{ bio_form.as_p }}
         </form>

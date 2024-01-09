@@ -1,11 +1,14 @@
+.body{
+    background-color: #444141;
+}
 .prod-img{
-    width: 20px;
-    height: 20px;
+    width: 50px;
+    /*height: 20px;*/
 }
 
 .order{
     background-color: #ffffff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 5px 15px rgba(62, 21, 101, 0.86);
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -13,11 +16,13 @@
     margin-right: auto;
     padding: 20px;
     margin-top: 40px;
+    border-radius: 10px;
 
 }
 
 .order:hover{
-    background-color: gray;
+    box-shadow: 0 10px 15px rgba(21, 101, 40, 0.86);
+    background-color: #adc2bb;
 }
 
 .product-block{
@@ -25,17 +30,28 @@
     flex-direction: row;
     align-items: center;
     text-align: center;
+
+
 }
 
 .button{
     margin: 10px;
     width: 30px;
     height: 30px;
+    border-radius: 5px;
+    border: none;
+
+}
+
+.button:hover{
+    transform: scale(1.2);
+    background-color: rgba(227, 95, 72, 0.86);
+    transition: all 0.2s ease-in-out;
 }
 
 .delivery{
     background-color: #ffffff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 5px 15px rgba(62, 21, 101, 0.86);
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -43,14 +59,16 @@
     margin-right: auto;
     padding: 20px;
     margin-top: 40px;
+    border-radius: 10px;
 }
 
 .delivery:hover{
-    background-color: gray;
+    box-shadow: 0 10px 15px rgba(21, 101, 40, 0.86);
+    background-color: #adc2bb;
 }
 .bio{
     background-color: #ffffff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 5px 15px rgba(62, 21, 101, 0.86);
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -58,8 +76,82 @@
     margin-right: auto;
     padding: 20px;
     margin-top: 40px;
+    border-radius: 10px;
 }
 
 .bio:hover{
-    background-color: gray;
+    background-color: #adc2bb;
+    box-shadow: 0 10px 15px rgba(21, 101, 40, 0.86);
+}
+
+.send-order-button{
+    width: 82.5%;
+    height: 6vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    background-color: rgba(227, 95, 72, 0.86);
+    border: none;
+    box-shadow: 0 10px 15px rgba(255, 255, 255, 0.86);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+.send-order-button:hover{
+    transform: scale(0.9);
+    box-shadow: 0 10px 15px rgba(63, 173, 96, 0.86);
+    background-color: #2aabd2;
+
+}
+.city{
+    height: 5vh;
+    border-radius: 10px;
+    border-style: solid;
+}
+
+.warehouse{
+    height: 5vh;
+    border-radius: 10px;
+    border-style: solid;
+}
+
+.full_name{
+    height: 3vh;
+    width: 500px;
+    border-radius: 4px;
+    border-style: solid;
+    transition: all 0.3s ease-in-out;
+}
+.surname{
+    height: 3vh;
+    width: 500px;
+    border-radius: 4px;
+    border-style: solid;
+    transition: all 0.3s ease-in-out;
+}
+.patronymic{
+    height: 3vh;
+    width: 500px;
+    border-radius: 4px;
+    border-style: solid;
+    transition: all 0.3s ease-in-out;
+}
+
+.full_name:hover{
+    transform: scale(0.95);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.86);
+    background-color: rgba(227, 95, 72, 0.86);
+}
+
+.patronymic:hover{
+    transform: scale(0.95);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.86);
+    background-color: rgba(227, 95, 72, 0.86);
+}
+
+.surname:hover{
+    transform: scale(0.95);
+    box-shadow: 0 10px 15px rgba(4, 0, 5, 0.86);
+    background-color: rgba(227, 95, 72, 0.86);
 }
