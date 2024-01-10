@@ -54,7 +54,7 @@ class Cart(models.Model):
             for item in items:
                 if product.id == item.product_id:
                     data_set.append([item.id, item.cart_id, product.name, item.amount, product.price, product.image.all()[1]])
-        print(data_set)
+
         return data_set
 
 class CartItem(models.Model):
@@ -67,14 +67,19 @@ class CartItem(models.Model):
         verbose_name = "Об'єкт корзини"
         verbose_name_plural = "Об'єкти корзини"
 
-
 class Order(models.Model):
     """Це модель вже оформленного замовлення"""
+    statuses = {1: "Виконується", 2:"Виконано"}
 
-    customer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Замовник")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Продукт")
-    amount = models.IntegerField(verbose_name="Кількість")
-    delivery_status = models.BooleanField(verbose_name="Статус замовлення")
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, verbose_name="Корзина")
+    name = models.CharField(max_length=255, verbose_name="Ім'я отримувача")
+    surname = models.CharField(max_length=255, verbose_name="Прізвище отримувача")
+    patronymic = models.CharField(max_length=255, verbose_name="Побатькові отримувача")
+    phone = models.CharField(max_length=255, verbose_name="Телефон отримувача")
+    selectedcity = models.CharField(max_length=255, verbose_name="Місто отримувача")
+    selectedwarehouse = models.CharField(max_length=255, verbose_name="Пункт отримання")
+    products = models.TextField(verbose_name="Замовлені товари")
+    status = models.CharField(max_length=255, choices=statuses, verbose_name="Статус замовлення")
 
     class Meta:
         verbose_name = "Замовлення"

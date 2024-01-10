@@ -1,3 +1,8 @@
+*{
+    font-family: 'Pangolin', cursive;
+    font-size: 20px;
+}
+
 .body{
     background-color: #444141;
 }
@@ -92,28 +97,34 @@
     display: flex;
     flex-direction: column;
     margin-top: 40px;
-    background-color: rgba(227, 95, 72, 0.86);
+    background-color: rgba(48, 201, 60, 0.86);
     border: none;
     box-shadow: 0 10px 15px rgba(255, 255, 255, 0.86);
-    border-radius: 5px;
+    border-radius: 10px;
     transition: all 0.3s ease-in-out;
 }
 .send-order-button:hover{
     transform: scale(0.9);
     box-shadow: 0 10px 15px rgba(63, 173, 96, 0.86);
-    background-color: #2aabd2;
+    background-color: #68118d;
 
 }
 .city{
     height: 5vh;
     border-radius: 10px;
     border-style: solid;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
 }
 
 .warehouse{
     height: 5vh;
     border-radius: 10px;
     border-style: solid;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
 }
 
 .full_name{
@@ -122,6 +133,8 @@
     border-radius: 4px;
     border-style: solid;
     transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
 }
 .surname{
     height: 3vh;
@@ -129,6 +142,8 @@
     border-radius: 4px;
     border-style: solid;
     transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
 }
 .patronymic{
     height: 3vh;
@@ -136,8 +151,23 @@
     border-radius: 4px;
     border-style: solid;
     transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
 }
-
+.phone{
+    height: 3vh;
+    width: 500px;
+    border-radius: 4px;
+    border-style: solid;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+.phone:hover{
+    transform: scale(0.95);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.86);
+    background-color: rgba(227, 95, 72, 0.86);
+}
 .full_name:hover{
     transform: scale(0.95);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.86);

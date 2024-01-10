@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{% get_media_prefix  %}headcart.png" type="image/x-icon">
 </head>
 <body class="body">
-
+    
     <div class="order">
     <h1>1.Товари в кошику</h1>
     {% for product in cart %}
@@ -42,6 +42,7 @@
         <form method="post" enctype="multipart/form-data" id="bio-form" name="bio-form">
             {% csrf_token %}
             {{ bio_form.as_p }}
+            <input type="hidden" id="cart_id" value="{{ cart_id }}"/>
         </form>
     </div>
     <button class="send-order-button" onclick="submitForm()">Замовити</button>

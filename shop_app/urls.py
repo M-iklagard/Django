@@ -13,5 +13,6 @@ urlpatterns = [
     path("product/<int:product_id>/", ProductView.as_view(), name="product_page"),
     path("search/<str:criterial>/", SearchView.as_view(), name="search"),
     path("", RedirectMain.as_view(), name="main-redir" ),
-    path("order/", order, name="order")
+    path("order/", order, name="order"),
+    path("orderstory/", OrderStory.as_view(), name="order_story"),
 ]

@@ -108,3 +108,7 @@ class BioForm(Form):
     ful_name = forms.CharField(label="Ім'я отримувача", required=True, widget=forms.TextInput(attrs={'id': 'full_name', "class":"full_name"}))
     surname = forms.CharField(label="Прізвище отримувача", required=True, widget=forms.TextInput(attrs={'id': 'surname', "class":"surname"}))
     patronymic = forms.CharField(label="Побатькові отримувача", required=True, widget=forms.TextInput(attrs={'id': 'patronymic', "class":"patronymic"}))
+    phone = forms.CharField(
+        label="Телефон", required=True,
+        widget=forms.TextInput(attrs={'id': 'phone', "class": "phone"})
+        )

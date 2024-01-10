@@ -1,0 +1,31 @@
+.container{
+    margin-top: 7%;
+
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    margin-top: 2px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    transition: all 0.2s ease-in-out;
+}
+
+.row:hover{
+    transform: scale(0.95);
+}
+
+.label{
+    color: #3e8f3e;
+}
+.data-block{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+
+.text{
+    font-size: 15px;
+}

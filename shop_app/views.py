@@ -131,7 +131,8 @@ class CartView(View):
         if request.user.is_authenticated:
             cart = Cart.objects.get(customer=request.user)
             data = cart.items()
-            return render(request, context={"cart": data, "order_form": OrderForm, "bio_form": BioForm}, template_name='cart.html')
+            cart_id = cart.id
+            return render(request, context={"cart": data, "order_form": OrderForm, "bio_form": BioForm, "cart_id": cart_id}, template_name='cart.html')
 
         # якщо користувач не авторизований
         else:
@@ -149,7 +150,8 @@ class CartView(View):
             # якщо у крористувача є неавторизована корзина
             cart = Cart.objects.get(id=cart_id)
             data = cart.items()
-            return render(request, context={"cart": data, "order_form": OrderForm, "bio_form": BioForm}, template_name='cart.html')
+            cart_id = cart.id
+            return render(request, context={"cart": data, "order_form": OrderForm, "bio_form": BioForm, "cart_id": cart_id}, template_name='cart.html')
 
 class AddToCartBtn(View):
     def post(self, request):
@@ -241,8 +243,54 @@ class RedirectMain(View):
     def get(self, request):
         return redirect("main", category="all", page=1)
 
-@csrf_exempt
 def order(request):
+    data = ["Помилка в view order"]
+
     if request.method == "POST":
-        data = [3]
+
+        # очищуємо корзину
+        order_data =  json.loads(request.body.decode())
+        cart_to_clear = Cart.objects.get(id=order_data["cart_id"])
+        # видаляємо айтеми корзини
+        cart_items = CartItem.objects.all().filter(cart=cart_to_clear).delete()
+
+        # функція історії замовлень доступна лише авторизованим користувачам
+        if cart_to_clear.customer:
+
+            #  це дані про товари замовлення
+            products_names = order_data["prodNamesArray"]
+            products_prices = order_data["prodPricesArray"]
+            products_amounts = order_data["prodAmountsArray"]
+
+            prod_data = []
+            for i in range(len(products_names)):
+                prod_data.append([products_names[i], products_prices[i], products_amounts[i]])
+            # -----------------------------------------------------------------
+
+            # записуємо дані замовлення в бд
+            order = Order.objects.create(
+                cart=cart_to_clear,
+                name=order_data["name"],
+                surname=order_data["surname"],
+                patronymic=order_data["patronymic"],
+                phone=order_data["phone"],
+                selectedcity=order_data["selectedcity"],
+                selectedwarehouse=order_data["selectedWarehouse"],
+                products=prod_data,
+                status="Виконується")
+
+            data = ["Успішно view order"]
+
+            # треба надіслати замовлення в телегу
+
         return JsonResponse(data, safe=False)
+
+class OrderStory(View):
+    """Історія замовлень для авторизованих користувачів"""
+    def get(self, request):
+
+        cart_id = Cart.objects.get(customer=request.user).id
+        orders = Order.objects.all().filter(cart_id=cart_id)
+
+        categories = Category.objects.all()
+        return render(request, template_name="order_story.html", context={"categories": categories, "orders": orders})

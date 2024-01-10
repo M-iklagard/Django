@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/product_container.css'%}">
     <link rel="stylesheet" href="{% static 'css/drop_down_menu.css'%}">
     <link rel="stylesheet" href="{% static 'css/search_result.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/order_story.css' %}">
 
 
     {% block head %}
@@ -35,9 +35,11 @@
             <ul class="search-menu" id="search-menu">
             </ul>
         </div>
-
         <a href="{% url 'cart' %}"><img src="{% get_media_prefix %}cart.png" class="icon"></a>
-
+        {% if user.is_authenticated  %}
+            <a href="{% url 'order_story' %}"><img src="{% get_media_prefix %}orderstory.png" class="icon"></a>
+        {% endif %}
+    
         {% if user.is_authenticated  %}
             <a href="{% url 'logout' %}"><img src="{% get_media_prefix %}auth.png" class="icon"></a>
         {% else %}

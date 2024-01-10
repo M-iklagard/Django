@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="shortcut icon" href="{% get_media_prefix  %}checklist.png" type="image/x-icon">
+        <title>Order story</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    {% for order in orders %}
+        <div class="row">
+            <div class="data-block">
+                <h1 class="label">Отримувач</h1>
+                <p class="text">
+                    {{ order.name }}
+                    {{ order.surname }}
+                    {{ order.patronymic }}<br>
+                    {{ order.phone }}
+                </p>
+            </div>
+
+            <div class="data-block">
+                <h1 class="label">Дані доставки</h1>
+                <p class="text">
+                    {{ order.selectedcity }}
+                    {{ order.selectedwarehouse }}
+                </p>
+
+            </div>
+
+            <div class="data-block">
+                <h1 class="label">Відомості про товар</h1>
+                <p class="text">
+                    {{ order.products }}
+                </p>
+            </div>
+
+            <div class="data-block">
+                <h1 class="label">Статус замовлення</h1>
+                {{ order.status }}
+                </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

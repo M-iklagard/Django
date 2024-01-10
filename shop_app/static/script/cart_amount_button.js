@@ -21,7 +21,7 @@ increaseBtns.forEach(function (btn, index) {
 function decreaseAmount(index) {
     var amountElement = document.querySelectorAll('.amount')[index];
     var currentAmount = parseInt(amountElement.textContent);
-    if (currentAmount > 0) {
+    if (currentAmount > 1) {
         amountElement.textContent = currentAmount - 1 + ' шт';
     }
 }
