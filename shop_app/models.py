@@ -75,7 +75,10 @@ class CartItem(models.Model):
 
 class Order(models.Model):
     """Це модель вже оформленного замовлення"""
-    statuses = {1: "Виконується", 2:"Виконано"}
+    STATUSES = [
+        (1, "Виконується"),
+        (2, "Виконано"),
+    ]
 
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, verbose_name="Корзина")
     name = models.CharField(max_length=255, verbose_name="Ім'я отримувача")
