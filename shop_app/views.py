@@ -343,12 +343,12 @@ def order(request):
 class OrderStory(View):
     """Історія замовлень для авторизованих користувачів"""
     def get(self, request):
+        if request.user.is_authenticated:
+            cart_id = Cart.objects.get(customer=request.user).id
+            orders = Order.objects.all().filter(cart_id=cart_id)
 
-        cart_id = Cart.objects.get(customer=request.user).id
-        orders = Order.objects.all().filter(cart_id=cart_id)
-
-        categories = Category.objects.all()
-        return render(request, template_name="order_story.html", context={"categories": categories, "orders": orders})
+            categories = Category.objects.all()
+            return render(request, template_name="order_story.html", context={"categories": categories, "orders": orders, "is_main":1})
 
 class CartDelButton(View):
     def post(self, request):
