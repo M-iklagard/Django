@@ -75,7 +75,7 @@ class CartItem(models.Model):
 
 class Order(models.Model):
     """Це модель вже оформленного замовлення"""
-    STATUSES = [
+    statuses = [
         (1, "Виконується"),
         (2, "Виконано"),
     ]
