@@ -22,6 +22,7 @@ class Image(models.Model):
         verbose_name_plural = "Зображення"
 
 
+
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name="Ім'я товару")
     price = models.FloatField(verbose_name="Вартість")
@@ -29,6 +30,11 @@ class Product(models.Model):
     image = models.ManyToManyField(Image, verbose_name="Зображення")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категорія")
     video = models.CharField(max_length=255, verbose_name="відео", blank=True)
+
+    ram = models.IntegerField(verbose_name="ОЗП", blank=True, null=True)
+    rom = models.IntegerField(verbose_name="ПЗП", blank=True, null=True)
+    display = models.IntegerField(verbose_name="Діагональ дисплея", blank=True, null=True)
+    brand = models.CharField(max_length=255, verbose_name="Бренд", blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -53,7 +59,7 @@ class Cart(models.Model):
         for product in products:
             for item in items:
                 if product.id == item.product_id:
-                    data_set.append([item.id, item.cart_id, product.name, item.amount, product.price, product.image.all()[1]])
+                    data_set.append([item.id, item.cart_id, product.name, item.amount, product.price])
 
         return data_set
 

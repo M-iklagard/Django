@@ -15,4 +15,5 @@ urlpatterns = [
     path("", RedirectMain.as_view(), name="main-redir" ),
     path("order/", order, name="order"),
     path("orderstory/", OrderStory.as_view(), name="order_story"),
+    path("cartdelbutton", CartDelButton.as_view(), name="cartdelbutton")
 ]

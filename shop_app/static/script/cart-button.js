@@ -32,31 +32,39 @@ function submitForm() {
     let warehouse = document.getElementById("warehouse");
     let index = warehouse.selectedIndex;
     let selectedWarehouse = null;
-    if (index>=0){selectedWarehouse = warehouse.options[index].text;}
+    if (index >= 0) {
+        selectedWarehouse = warehouse.options[index].text;
+    }
 
     // назви товарів
     let productNames = document.getElementsByName("product-name").values()
     let prodNamesArray = [];
     for (let element of productNames) {
-        prodNamesArray.push(element.textContent)};
+        prodNamesArray.push(element.textContent)
+    }
+    ;
 
     //  кількості товарів
     let productAmounts = document.getElementsByName("product-amount")
     let prodAmountsArray = [];
     for (let element of productAmounts) {
-        prodAmountsArray.push(element.textContent)};
+        prodAmountsArray.push(element.textContent)
+    }
+    ;
 
     // вартості за одиницю товару
     let productPrices = document.getElementsByName("product-price")
     let prodPricesArray = [];
     for (let element of productPrices) {
-        prodPricesArray.push(element.textContent)};
+        prodPricesArray.push(element.textContent)
+    }
+    ;
 
     // токен
     let csrftoken = getCookie('csrftoken');
 
     // перевіряємо чи заповнено всі поля
-    if (selectedWarehouse && name && surname && patronymic && phone && prodNamesArray.length>0) {
+    if (selectedWarehouse && name && surname && patronymic && phone && prodNamesArray.length > 0) {
         console.log(prodNamesArray)
         // формуємо дані для відправки
         let requestData = {
@@ -79,22 +87,31 @@ function submitForm() {
         Http.open("POST", url)
         Http.setRequestHeader("X-CSRFToken", csrftoken);
         Http.send(jsonData)
-        Http.onreadystatechange=(e)=> {
+        Http.onreadystatechange = (e) => {
 
-            if (Http.readyState === 4) {if (Http.status === 200){
-                let data = JSON.parse(Http.responseText)
-                console.log(data)
-            }}}
+            if (Http.readyState === 4) {
+                if (Http.status === 200) {
+                    let data = JSON.parse(Http.responseText)
+                    console.log(data)
+                }
+            }
+        }
 
 
         alert("Замовлення прийнято")
         // це редірект на головну сторінку
-        document.location.href = '/main/all/1'}
-        else {
-            if (prodNamesArray.length<=0){
-                alert("Корзина пуста")
-            }
-            else {alert("Заповніть всі поля")}
+        document.location.href = '/main/all/1'
+    } else {
+        if (prodNamesArray.length <= 0) {
+            alert("Корзина пуста")
+        } else {
+            alert("Заповніть всі поля")
         }
     }
+}
 
+function redirect() {
+    bt = document.getElementById("redirectButton")
+    bt.addEventListener("click", function() {
+    document.location.href = "/main/all/1";
+})}

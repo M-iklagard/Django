@@ -7,8 +7,13 @@
 {% endblock %}
 
 {% block content %}
-     
-    <div class="product-grid">
+
+    <form class="filter-row" id="filter-row" hidden="hidden">
+        {{ filter.as_p }}
+        <button type="submit">Фільтрувати</button>
+    </form>
+
+    <div class="product-grid" id="product-grid">
         {% for product in products %}
 
             <a href="/product/{{ product.id }}/" class="product-container" id="product-container">

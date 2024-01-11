@@ -112,3 +112,27 @@ class BioForm(Form):
         label="Телефон", required=True,
         widget=forms.TextInput(attrs={'id': 'phone', "class": "phone"})
         )
+
+
+class FilterForm(Form):
+    """Форма для фільтрів"""
+    ram = forms.CharField(widget=forms.TextInput(attrs={'id': 'RAM',
+                                                        "class": "input",
+                                                        "placeholder": "RAM > x"}))
+    ram.label = ""
+    ram.required = False
+    rom = forms.CharField(widget=forms.TextInput(attrs={'id': 'ROM',
+                                                        "class": "input",
+                                                        "placeholder": "ROM > x"}))
+    rom.label = ""
+    rom.required = False
+    display = forms.CharField(widget=forms.TextInput(attrs={'id': 'Display',
+                                                            "class": "input",
+                                                            "placeholder": "Display > x"}))
+    display.label = ""
+    display.required = False
+    brand = forms.CharField(widget=forms.TextInput(attrs={'id': 'Brand',
+                                                            "class": "input",
+                                                            "placeholder": "Brand"}))
+    brand.label = ""
+    brand.required=False

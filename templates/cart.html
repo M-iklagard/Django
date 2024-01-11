@@ -12,17 +12,24 @@
     <link rel="shortcut icon" href="{% get_media_prefix  %}headcart.png" type="image/x-icon">
 </head>
 <body class="body">
-    
+
     <div class="order">
     <h1>1.Товари в кошику</h1>
     {% for product in cart %}
         <div class="product-block">
-            <p  id="product-name" name="product-name">{{ product.2 }} - </p>
-            {#<img src="{% get_media_prefix %}{{product.5}}" class="prod-img">#}
+
+            <form method="post" action="{% url "cartdelbutton" %}">
+                {% csrf_token %}
+                <input type="hidden" name="cart_item_id" value="{{ product.0 }}"/>
+                <button class="delete" type="submit">❌</button>
+            </form>
+
+            <p style="margin-left: 50px" id="product-name" name="product-name">{{ product.2 }} - </p>
             <button class="button decreaseBtn">-</button>
             <div class="amount" id="product-amount" name="product-amount">{{ product.3 }} шт</div>
             <button class="button increaseBtn">+</button>
             <div class="price" id="product-price" name="product-price"> {{ product.4 }} грн, за одиницю товару</div>
+
         </div>
     {% endfor %}
     <div id="totalPrice"></div>
@@ -46,6 +53,7 @@
         </form>
     </div>
     <button class="send-order-button" onclick="submitForm()">Замовити</button>
+    <button  onclick="redirect()" id="redirectButton" class="send-order-button">На головну</button>
 </body>
 </html>
 

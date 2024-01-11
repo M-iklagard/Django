@@ -91,18 +91,61 @@ class Main(View):
 
 
     def get(self, request, category, page):
-
         start, stop, pages_count = self.pagination(page, category)
-
         if category == "all":
-            products = Product.objects.all()[start:stop]
+            products = Product.objects.all()
         else:
             # перевіряємо чи існує категорія
             try:
                 category_obj = Category.objects.get(name=category)
             except: return HttpResponse("Категорія не існує")
             # продукти за категорією
-            products = Product.objects.all().filter(category=category_obj)[start:stop]
+            products = Product.objects.all().filter(category=category_obj)
+
+        # ---------критерії фільтрування ----------
+        filter = FilterForm(request.GET)
+        f_criterials = filter.data.dict()
+
+        try:
+            ram = int(f_criterials["ram"])
+        except: ram=None
+        try:
+            rom = int(f_criterials["rom"])
+        except: rom=None
+        try:
+            display = int(f_criterials["display"])
+        except: display=None
+        try:
+            brand = f_criterials["brand"]
+        except:
+            brand = None
+        if brand:
+            pass
+        else:
+            brand=None
+
+        filters = [ram, rom, display, brand]
+        # ---------критерії фільтрування ----------/
+
+
+        # ----------логіка фільтрування--------------
+        if ram or rom or display or brand:
+            if ram:
+                products = products.filter(ram__gt=ram)
+            if rom:
+                products = products.filter(rom__gt=rom)
+            if display:
+                products = products.filter(display__gt=display)
+            if brand:
+                products = products.filter(brand__contains=brand)
+            products[start:stop]
+
+            # змінюємо кількість сторінок, якщо товарів менше 15
+            if len(products)<=15:
+                pages_count = 2
+        else:
+            products = products[start:stop]
+        # ----------логіка фільтрування--------------/
 
         # всі категорії для дроп меню
         categories = Category.objects.all()
@@ -110,7 +153,8 @@ class Main(View):
                                                  "pages_count": range(1, pages_count),
                                                  "current_page": page,
                                                  "current_category": category,
-                                                 "categories": categories})
+                                                 "categories": categories,
+                                                 "filter": filter})
 
 
         # перевіряємо чи користувач не авторизований
@@ -127,6 +171,7 @@ class Main(View):
 class CartView(View):
     """Відповідає за логіку корзини"""
     def get(self, request):
+
         # якщо користувач авторизований
         if request.user.is_authenticated:
             cart = Cart.objects.get(customer=request.user)
@@ -223,7 +268,7 @@ class ProductView(View):
         product = Product.objects.get(id=product_id)
         # всі категорії для дроп меню
         categories = Category.objects.all()
-        return render(request,context={"product": product, "categories":categories}, template_name="product.html")
+        return render(request,context={"product": product, "categories":categories, "is_main":1}, template_name="product.html")
 
 class SearchView(View):
     """Вью для форми пошуку,
@@ -242,6 +287,14 @@ class RedirectMain(View):
     каталогу товарів"""
     def get(self, request):
         return redirect("main", category="all", page=1)
+
+def send_order(message):
+    """Ця фігня відправить повідомлення манагеру"""
+    TOKEN = "6361419585:AAFSJwZxG7WOp96PazxiibAt48J5STMmy3A"
+    chat_id = 398324319
+    url = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
+    params = {'chat_id': chat_id, 'text': message}
+    response = requests.post(url, params=params)
 
 def order(request):
     data = ["Помилка в view order"]
@@ -279,6 +332,8 @@ def order(request):
                 products=prod_data,
                 status="Виконується")
 
+            send_order(str(prod_data))
+            print(str(prod_data))
             data = ["Успішно view order"]
 
             # треба надіслати замовлення в телегу
@@ -294,3 +349,9 @@ class OrderStory(View):
 
         categories = Category.objects.all()
         return render(request, template_name="order_story.html", context={"categories": categories, "orders": orders})
+
+class CartDelButton(View):
+    def post(self, request):
+        cart_item_id = request.POST["cart_item_id"]
+        CartItem.objects.get(id=cart_item_id).delete()
+        return redirect("cart")

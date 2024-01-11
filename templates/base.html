@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/drop_down_menu.css'%}">
     <link rel="stylesheet" href="{% static 'css/search_result.css' %}">
     <link rel="stylesheet" href="{% static 'css/order_story.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/filter-bar.css' %}">
 
     {% block head %}
         <link rel="shortcut icon" href="{% get_media_prefix  %}headlogo.png" type="image/x-icon">
@@ -18,12 +18,11 @@
     {% endblock %}
 
     <script src="{% get_static_prefix %}script/search.js" defer></script>
-
+    <script src="{% get_static_prefix %}script/filter.js" defer></script>
 </head>
 
 
     <body id="body" class="body">
-
 
     <div class="top-bar">
         <a href="/main/all/1">
@@ -35,6 +34,11 @@
             <ul class="search-menu" id="search-menu">
             </ul>
         </div>
+    
+        {% if not is_main %}
+            <img src="{% get_media_prefix %}filter.png" class="filter" id="filter">
+        {% endif %}
+        
         <a href="{% url 'cart' %}"><img src="{% get_media_prefix %}cart.png" class="icon"></a>
         {% if user.is_authenticated  %}
             <a href="{% url 'order_story' %}"><img src="{% get_media_prefix %}orderstory.png" class="icon"></a>
