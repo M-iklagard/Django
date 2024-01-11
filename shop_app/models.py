@@ -75,10 +75,7 @@ class CartItem(models.Model):
 
 class Order(models.Model):
     """Це модель вже оформленного замовлення"""
-    statuses = [
-        (1, "Виконується"),
-        (2, "Виконано"),
-    ]
+
 
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, verbose_name="Корзина")
     name = models.CharField(max_length=255, verbose_name="Ім'я отримувача")
@@ -88,7 +85,7 @@ class Order(models.Model):
     selectedcity = models.CharField(max_length=255, verbose_name="Місто отримувача")
     selectedwarehouse = models.CharField(max_length=255, verbose_name="Пункт отримання")
     products = models.TextField(verbose_name="Замовлені товари")
-    status = models.CharField(max_length=255, choices=statuses, verbose_name="Статус замовлення")
+    status = models.CharField(max_length=255, verbose_name="Статус замовлення")
 
     class Meta:
         verbose_name = "Замовлення"
