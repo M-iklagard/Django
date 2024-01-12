@@ -11,7 +11,6 @@ class Category(models.Model):
         verbose_name = "Категорія"
         verbose_name_plural = "Категорії"
 
-
 class Image(models.Model):
     img_url = models.ImageField(verbose_name="Посилання на зображення" )
     def __str__(self):
@@ -20,8 +19,6 @@ class Image(models.Model):
     class Meta:
         verbose_name = "Зображення"
         verbose_name_plural = "Зображення"
-
-
 
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name="Ім'я товару")

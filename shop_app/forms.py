@@ -44,7 +44,6 @@ class AuthForm(ModelForm):
             "password": forms.PasswordInput(attrs={"placeholder": "пароль", "class": "form-input"}),
         }
 
-
 def get_cities():
     """Повертає всі міста"""
     API_KEY = "b65cd870b67d4a926d45dbf41ee20872"
@@ -96,13 +95,11 @@ def get_wh(ref):
                     continue
     return result
 
-
 class OrderForm(Form):
     cities = get_cities()
     warehouses = []
     city = forms.ChoiceField(choices=cities,  widget=forms.Select(attrs={"id": "city","required":True, "class":"city"}), label="Місто")
     warehouse = forms.ChoiceField(choices=warehouses, widget=forms.Select(attrs={"id": "warehouse", "required":True,"class":"warehouse"}), label="Відділення")
-
 
 class BioForm(Form):
     ful_name = forms.CharField(label="Ім'я отримувача", required=True, widget=forms.TextInput(attrs={'id': 'full_name', "class":"full_name"}))
@@ -112,7 +109,6 @@ class BioForm(Form):
         label="Телефон", required=True,
         widget=forms.TextInput(attrs={'id': 'phone', "class": "phone"})
         )
-
 
 class FilterForm(Form):
     """Форма для фільтрів"""
